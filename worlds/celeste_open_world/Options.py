@@ -70,6 +70,11 @@ class StrawberriesRequiredPercentage(Range):
     range_end = 100
     default = 80
 
+class DeprioritizeStrawberries(Toggle):
+    """
+    Determines whether Strawberries are deprioritized, meaning they will be placed on priority locations after other progression items.
+    """
+    display_name = "Deprioritize Strawberries"
 
 class Checkpointsanity(Toggle):
     """
@@ -379,6 +384,7 @@ celeste_option_groups = [
         GoalAreaCheckpointsanity,
         TotalStrawberries,
         StrawberriesRequiredPercentage,
+        DeprioritizeStrawberries,
     ]),
     OptionGroup("Location Options", [
         Checkpointsanity,
@@ -488,6 +494,7 @@ class CelesteOptions(PerGameCommonOptions):
     goal_area_checkpointsanity: GoalAreaCheckpointsanity
     total_strawberries: TotalStrawberries
     strawberries_required_percentage: StrawberriesRequiredPercentage
+    deprioritize_strawberries: DeprioritizeStrawberries
 
     junk_fill_percentage: JunkFillPercentage
     trap_fill_percentage: TrapFillPercentage
