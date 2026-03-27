@@ -107,13 +107,12 @@ class CelesteOpenWorld(World):
     def create_item(self, name: str, force_useful: bool = False) -> CelesteItem:
         item_data_table = generate_item_data_table()
 
-        if name == ItemName.strawberry:
-            # Check whether option to deprioritize is set;
-            #   if set, override default classification
-            if self.options.deprioritize_strawberries:
-                return CelesteItem(name, ItemClassification.progression_deprioritized_skip_balancing, item_data_table[name].code, self.player)
-            elif force_useful:
-                return CelesteItem(name, ItemClassification.useful, item_data_table[name].code, self.player)
+        if name == ItemName.strawberry and force_useful:
+            return CelesteItem(name, ItemClassification.useful, item_data_table[name].code, self.player)
+        # Check whether option to deprioritize is set;
+        #   if set, override default classification
+        elif name == ItemName.strawberry and self.options.deprioritize_strawberries:
+            return CelesteItem(name, ItemClassification.progression_deprioritized_skip_balancing, item_data_table[name].code, self.player)
         elif name in item_data_table:
             return CelesteItem(name, item_data_table[name].type, item_data_table[name].code, self.player)
         else:
